@@ -5,7 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 
@@ -22,16 +22,28 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Virtual Meeting Scheduler" },
+    {
+      name: "description",
+      content:
+        "Schedule, join, and manage virtual meetings with a modern dashboard and calendar.",
+    },
+    { name: "theme-color", content: "#2563EB" },
+  ];
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-full antialiased">
         {children}
         <ScrollRestoration />
         <Scripts />
